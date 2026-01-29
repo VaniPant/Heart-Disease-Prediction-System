@@ -1,0 +1,28 @@
+{
+    "best_model": "Logistic Regression",
+    "best_model_metrics": {
+        "test_accuracy": 0.8032786885245902,
+        "auc_roc": 0.8712121212121212,
+        "cv_auc_mean": 0.8983294483294484
+    },
+    "feature_names": [
+        "age",
+        "sex",
+        "cp",
+        "trestbps",
+        "chol",
+        "fbs",
+        "restecg",
+        "thalach",
+        "exang",
+        "oldpeak",
+        "slope",
+        "ca",
+        "thal"
+    ],
+    "training_samples": 241,
+    "test_samples": 61,
+    "random_state": 42,
+    "duplicates_removed": 723,
+    "final_dataset_size": 302
+}

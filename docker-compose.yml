@@ -1,0 +1,150 @@
+version: '3.8'
+
+services:
+  heart-disease-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: heart-disease-prediction
+    ports:
+      - "8501:8501"
+    volumes:
+      # Mount data directory
+      - ./data:/app/data
+      # Mount models directory
+      - ./models:/app/models
+      # Mount figures directory
+      - ./figures:/app/figures
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+```
+
+---
+
+## File 6: `.dockerignore`
+```
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+README.md
+*.md
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+temp/
+```
+
+---
+
+## File 7: `.gitignore`
+```
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Models (optional - uncomment if models are too large)
+# models/*.pkl
+
+# Data (optional - uncomment if data is too large)
+# data/*.csv
+
+# Figures
+# figures/*.png
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+temp/
+prediction_report_*.json
