@@ -748,7 +748,7 @@ st.markdown(
     """
     <div style="text-align: center; color: #7f8c8d; padding: 20px;">
         <p><strong>Heart Disease Prediction System v1.0</strong></p>
-        <p>Developed by Vani Pant | Data Science Master's Student | University of Luxembourg</p>
+        <p>Developed by Vani Pant | Master Data Science Student | University of Luxembourg</p>
         <p>⚠️ For educational and research purposes only - Not for clinical use</p>
     </div>
     """,
