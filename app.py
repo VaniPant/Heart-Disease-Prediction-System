@@ -18,6 +18,13 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+def show_image_full_width(path: str):
+    try:
+        st.image(path, use_container_width=True)   # if supported
+    except TypeError:
+        st.image(path, use_column_width=True)      # fallback
+
+
 # Custom CSS
 st.markdown("""
     <style>
@@ -526,7 +533,7 @@ with tab3:
             options=list(available_viz.keys())
         )
         
-        st.image(available_viz[viz_selection], use_container_width=True)
+        show_image_full_width(available_viz[viz_selection])
         
         # Download button
         with open(available_viz[viz_selection], 'rb') as file:
