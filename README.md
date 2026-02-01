@@ -7,27 +7,7 @@ An end-to-end machine learning system for predicting heart disease risk using cl
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.29.0-red)
 ![Docker](https://img.shields.io/badge/Docker-Ready-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
-
-## 📋 Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Dataset](#dataset)
-- [Model Performance](#model-performance)
-- [Installation](#installation)
-  - [Local Setup](#local-setup)
-  - [Docker Setup](#docker-setup)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Technologies Used](#technologies-used)
-- [Model Details](#model-details)
-- [Visualizations](#visualizations)
-- [Future Improvements](#future-improvements)
-- [Contributing](#contributing)
-- [License](#license)
-- [Author](#author)
-- [Disclaimer](#disclaimer)
-
+=
 ## 🎯 Overview
 
 This project implements a complete machine learning pipeline for heart disease prediction, from data preprocessing and model training to deployment via an interactive web application. The system analyzes 13 clinical features to predict the likelihood of heart disease in patients.
@@ -87,21 +67,8 @@ This project implements a complete machine learning pipeline for heart disease p
 | `ca` | Number of major vessels (0-3) | 0-3 |
 | `thal` | Thalassemia | 0-3 |
 
-## 📈 Model Performance
 
-### Best Model: XGBoost / Random Forest
-
-| Metric | Score |
-|--------|-------|
-| **Test Accuracy** | ~85-90% |
-| **AUC-ROC** | ~0.90-0.95 |
-| **Cross-Validation AUC** | ~0.88-0.92 |
-| **Sensitivity** | ~85-90% |
-| **Specificity** | ~85-90% |
-
-*Note: Exact metrics will vary based on train-test split. Run `python train_model.py` to see current performance.*
-
-## 🚀 Installation
+## 🚀 Quickstart
 
 ### Prerequisites
 
@@ -109,110 +76,69 @@ This project implements a complete machine learning pipeline for heart disease p
 - 2GB free disk space
 - Internet connection (for initial setup)
 
-### Local Setup
+## Docker — primary
 
-#### Option 1: Using setup script (Linux/Mac)
+### 1) Clone the repo
 ```bash
-# Clone repository
-git clone https://github.com/yourusername/heart-disease-prediction.git
-cd heart-disease-prediction
-
-# Make setup script executable
-chmod +x setup.sh
-
-# Run setup script
-./setup.sh
-
-# Activate virtual environment
-source venv/bin/activate
+git clone https://github.com/VaniPant/Heart-Disease-Prediction-System.git
+cd Heart-Disease-Prediction-System
 ```
 
-#### Option 2: Manual setup (All platforms)
+### 2) Build the image
 ```bash
-# Clone repository
-git clone https://github.com/yourusername/heart-disease-prediction.git
-cd heart-disease-prediction
+docker build -t heart-disease-app .
+```
 
-# Create virtual environment
+### 3) Run the container
+```bash
+docker run --rm -p 8501:8501 heart-disease-app
+```
+
+### 4) Open the app in your browser
+```bash
+http://localhost:8501
+```
+
+---
+
+## pip — secondary
+
+```bash
+git clone https://github.com/VaniPant/Heart-Disease-Prediction-System.git
+cd Heart-Disease-Prediction-System
+
 python -m venv venv
 
-# Activate virtual environment
-# On Windows:
-venv\Scripts\activate
-# On Linux/Mac:
-source venv/bin/activate
+# Windows (PowerShell)
+venv\Scripts\Activate.ps1
 
-# Install dependencies
+# Linux/Mac
+# source venv/bin/activate
+
 pip install --upgrade pip
 pip install -r requirements.txt
 
-# Create directories
-mkdir data models figures
-```
-
-### Docker Setup
-```bash
-# Clone repository
-git clone https://github.com/yourusername/heart-disease-prediction.git
-cd heart-disease-prediction
-
-# Build and run with Docker Compose
-docker-compose up --build
-
-# App will be available at http://localhost:8501
-```
-
-### Download Dataset
-
-1. Download the heart disease dataset from [Kaggle](https://www.kaggle.com/datasets/johnsmith88/heart-disease-dataset)
-2. Place `heart.csv` in the `data/` directory
-
-## 💻 Usage
-
-### Training the Model
-```bash
-# Activate virtual environment (if using local setup)
-source venv/bin/activate  # Linux/Mac
-# OR
-venv\Scripts\activate  # Windows
-
-# Train model
-python train_model.py
-```
-
-**This will:**
-- Load and preprocess the dataset
-- Perform exploratory data analysis
-- Train multiple ML models
-- Generate evaluation metrics
-- Save models and visualizations
-- Create comparison reports
-
-**Output:**
-- Models saved in `models/`
-- Visualizations saved in `figures/`
-- Training logs printed to console
-
-### Running the Web Application
-
-#### Local
-```bash
-# Activate virtual environment
-source venv/bin/activate  # Linux/Mac
-
-# Run Streamlit app
 streamlit run app.py
 ```
 
-#### Docker
+Open:
 ```bash
-# Run with Docker Compose
-docker-compose up
-
-# Or build and run manually
-docker build -t heart-disease-app .
-docker run -p 8501:8501 heart-disease-app
+http://localhost:8501
 ```
+
+---
+
+## 🏋️ Training (optional)
+
+If you want to retrain models locally:
+```bash
+python train_model.py
+```
+
+Typical outputs:
+- Models saved in `models/`
+- Plots saved in `figures/`
+
 
 **Access the app:**  
 Open your browser and navigate to `http://localhost:8501`
@@ -384,13 +310,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Author
 
-**Panos**  
+**Vani Pant**  
 Master's Student in Data Science  
 University of Luxembourg
 
-- LinkedIn: [Your LinkedIn]
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
+- GitHub: [@yourusername]https://github.com/VaniPant)
+- Email: 0242319112@uni.lu
 
 ## ⚠️ Disclaimer
 
@@ -414,21 +339,3 @@ University of Luxembourg
 - [XGBoost Documentation](https://xgboost.readthedocs.io/)
 - [Docker Documentation](https://docs.docker.com/)
 
----
-
-## 🙏 Acknowledgments
-
-- UCI Machine Learning Repository for the dataset
-- Kaggle community for data preprocessing insights
-- Streamlit for the amazing web framework
-- The open-source community
-
----
-
-<div align="center">
-
-### ⭐ If you found this project helpful, please give it a star! ⭐
-
-Made with ❤️ by Panos
-
-</div>

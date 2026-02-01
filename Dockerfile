@@ -11,29 +11,33 @@ ENV PYTHONUNBUFFERED=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=1
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
+# - curl: used by HEALTHCHECK
+# - libgomp1: common runtime dependency for ML wheels (xgboost / sklearn OpenMP)
+# - build-essential: safe for packages that may need compilation
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     curl \
-    software-properties-common \
+    libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first (for better caching)
 COPY requirements.txt .
 
 # Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Copy project files
 COPY . .
 
-# Create necessary directories
+# Create necessary directories (safe even if they exist)
 RUN mkdir -p data models figures
 
 # Expose Streamlit port
 EXPOSE 8501
 
-# Health check
-HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
+# Health check (Streamlit internal health endpoint)
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+  CMD curl --fail http://localhost:8501/_stcore/health || exit 1
 
-# Set entrypoint
-ENTRYPOINT ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+# Default command (CMD makes it easy to override, e.g., run train_model.py)
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
