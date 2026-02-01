@@ -314,7 +314,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Master's Student in Data Science  
 University of Luxembourg
 
-- GitHub: [@yourusername]https://github.com/VaniPant)
+- GitHub: https://github.com/VaniPant
 - Email: 0242319112@uni.lu
 
 ## ⚠️ Disclaimer
